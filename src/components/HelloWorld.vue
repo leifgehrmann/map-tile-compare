@@ -25,17 +25,39 @@ export default defineComponent({
     var beforeMap = new maplibregl.Map({
       container: "before",
       style: 'mapbox://styles/leifgehrmann/cksdm6ebv3u8417p1amevc6d6',
-      center: [7.221275, 50.326111],
-      zoom: 5,
+      center: [-3.1817, 55.9548],
+      zoom: 13,
     });
 
     var afterMap = new maplibregl.Map({
       container: "after",
       style:
-          "mapbox://styles/leifgehrmann/ckqqx35za2evv18o0vzlrmib1",
-      center: [7.221275, 50.326111],
-      zoom: 5,
+          "mapbox://styles/leifgehrmann/cksdm6ebv3u8417p1amevc6d6",
+      center: [-3.1817, 55.9548],
+      zoom: 13,
     });
+
+    afterMap.on('load', function () {
+      afterMap.addSource('edinburgh_2', {
+        'type': 'raster',
+        'tiles': [
+          'https://tiles.leifgehrmann.com/edinburgh_2/{z}/{x}/{y}.png'
+        ],
+        'scheme': 'tms',
+        'minzoom': 10,
+        'maxzoom': 15,
+        "tileSize": 256
+      });
+      afterMap.addLayer(
+          {
+            'id': 'edinburgh_2-layer',
+            'type': 'raster',
+            'source': 'edinburgh_2',
+            'paint': {}
+          },
+          'tunnel-street-minor-low'
+      );
+    })
 
     // A selector or reference to HTML element
     var container = "#comparison-container";
