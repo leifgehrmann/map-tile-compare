@@ -1,12 +1,25 @@
 <template>
   <div id="comparison-container">
-    <div id="before" class="map"></div>
-    <div id="after" class="map"></div>
+    <div
+      id="before"
+      class="map"
+    />
+    <div
+      id="after"
+      class="map"
+    />
   </div>
 </template>
 
 <script lang="ts">
+import maplibregl from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css';
+import MaplibreCompare from '@maplibre/maplibre-gl-compare'
+import '@maplibre/maplibre-gl-compare/dist/maplibre-gl-compare.css';
 import { ref, defineComponent } from 'vue'
+
+console.log(MaplibreCompare)
+console.log(maplibregl)
 
 export default defineComponent({
   name: 'Map',
@@ -62,8 +75,7 @@ export default defineComponent({
     // A selector or reference to HTML element
     var container = "#comparison-container";
 
-    // @ts-ignore
-    var map = new maplibregl.Compare(beforeMap, afterMap, container);
+    new MaplibreCompare(beforeMap, afterMap, container);
   }
 })
 </script>

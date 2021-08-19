@@ -1,11 +1,13 @@
 <template>
-
+  <span>Hello World</span>
 </template>
 
-<script>
-export default {
-name: "SplashScreen"
-}
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'SplashScreen',
+})
 </script>
 
 <style scoped>
