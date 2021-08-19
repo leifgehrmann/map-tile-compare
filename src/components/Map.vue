@@ -9,7 +9,7 @@
 import { ref, defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: 'Map',
   props: {
     msg: {
       type: String,
@@ -74,6 +74,11 @@ export default defineComponent({
   top: 0;
   bottom: 0;
   width: 100%;
-  background: #0F0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .map {
+
+  }
 }
 </style>

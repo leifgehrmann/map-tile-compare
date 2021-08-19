@@ -1,23 +1,26 @@
 <template>
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <Map msg="Hello Vue 3 + TypeScript + Vite" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import Map from './components/Map.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    Map
   }
 })
 </script>
 
 <style>
-body {
-  overflow: hidden;
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #EEE;
+  font-family: ui-rounded, sans-serif;
 }
 
 body * {
@@ -26,5 +29,11 @@ body * {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000;
+  }
 }
 </style>
