@@ -6,7 +6,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "lint": "eslint . --ext .js,.vue,.ts",
-    "test:e2e": "NODE_ENV=test npx cypress run"
+    "test:e2e": "npx cypress run"
   },
   "dependencies": {
     "@maplibre/maplibre-gl-compare": "^0.5.0",
