@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+/* eslint-disable import/no-extraneous-dependencies */
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 import istanbul from 'vite-plugin-istanbul';
 
 export default defineConfig({
@@ -8,9 +9,9 @@ export default defineConfig({
     istanbul({
       include: 'src/*',
       exclude: ['node_modules', 'test/', 'cypress/'],
-      extension: [ '.js', '.ts', '.vue' ],
+      extension: ['.js', '.ts', '.vue'],
       requireEnv: true,
-      cypress: true
+      cypress: true,
     }),
-  ]
-})
+  ],
+});
