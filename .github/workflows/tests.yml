@@ -29,7 +29,7 @@ jobs:
         with:
           build: npm run build
           start: npm run serve
-          command: npm run e2e:ci
+          command: npm run test:e2e
 #      - name: Upload coverage to Codecov
 #        uses: codecov/codecov-action@v1
 #        with:
