@@ -2,11 +2,11 @@
   <div id="comparison-container">
     <div
       id="before"
-      class="map"
+      class="absolute top-0 bottom-0 w-full"
     />
     <div
       id="after"
-      class="map"
+      class="absolute top-0 bottom-0 w-full"
     />
   </div>
 </template>
@@ -57,6 +57,7 @@ export default defineComponent({
         minzoom: 10,
         maxzoom: 15,
         tileSize: 256,
+        bounds: [-3.4620, 55.8010, -3.09828, 55.9810],
       });
       afterMap.addLayer(
         {
@@ -77,18 +78,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-@media (prefers-color-scheme: dark) {
-  .map {
-
-  }
-}
-</style>
