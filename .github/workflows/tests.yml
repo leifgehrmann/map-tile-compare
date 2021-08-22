@@ -25,7 +25,7 @@ jobs:
       - name: Run tests with cypress (which includes install, build, serve, test, and coverage)
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_MAP_TILE_COMPARE: http://localhost:5000/
+          CYPRESS_MAP_TILE_COMPARE_HOST: http://localhost:5000/
         with:
           build: npm run build
           start: npm run serve
