@@ -29,7 +29,7 @@
         "
       >
         <img
-          src="src/assets/expand.svg"
+          src="../assets/expand.svg"
           alt="Expand image"
           title="Expand image"
           class="w-3"

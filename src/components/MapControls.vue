@@ -24,7 +24,7 @@
         @click="mountedShowLabels = !mountedShowLabels"
       >
         <img
-          src="src/assets/show-labels.svg"
+          src="../assets/show-labels.svg"
           alt="Show labels"
           title="Show labels"
           class="transition-opacity"
@@ -47,7 +47,7 @@
         @click="mountedShowCompare = !mountedShowCompare"
       >
         <img
-          src="src/assets/show-compare.svg"
+          src="../assets/show-compare.svg"
           alt="Show comparison"
           title="Show comparison"
           class="transition-opacity"
