@@ -98,7 +98,7 @@ export default defineComponent({
     this.afterMap = afterMap;
     this.beforeMap = beforeMap;
 
-    beforeMap.on('load', () => {
+    beforeMap.once('sourcedata', () => {
       if (this.beforeMap === null) {
         throw new Error('beforeMap is null when it should not be');
       }
@@ -107,7 +107,7 @@ export default defineComponent({
       }
     });
 
-    afterMap.on('styledata', () => {
+    afterMap.once('sourcedata', () => {
       if (this.afterMap === null) {
         throw new Error('afterMap is null when it should not be');
       }
