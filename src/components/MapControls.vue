@@ -16,19 +16,21 @@
       shadow-lg
       "
     >
-      <div
+      <button
         class="
-        px-4 py-3
+        px-3 py-3
         w-12 h-12
         "
+        @click="mountedShowLabels = !mountedShowLabels"
       >
-        <input
-          id="showLabels"
-          v-model="mountedShowLabels"
-          type="checkbox"
+        <img
+          src="src/assets/show-labels.svg"
+          alt="Show labels"
+          title="Show labels"
+          class="transition-opacity"
+          :class="{'opacity-50': !mountedShowLabels}"
         >
-        <label for="showLabels" />
-      </div>
+      </button>
       <div
         class="
         bg-gray-600 bg-opacity-50
@@ -37,19 +39,21 @@
         backdrop-filter backdrop-blur-xl backdrop-brightness-200
         "
       />
-      <div
+      <button
         class="
-        px-4 py-3
+        px-3 py-3
         w-12 h-12
         "
+        @click="mountedShowCompare = !mountedShowCompare"
       >
-        <input
-          id="showCompare"
-          v-model="mountedShowCompare"
-          type="checkbox"
+        <img
+          src="src/assets/show-compare.svg"
+          alt="Show comparison"
+          title="Show comparison"
+          class="transition-opacity"
+          :class="{'opacity-50': !mountedShowCompare}"
         >
-        <label for="showCompare" />
-      </div>
+      </button>
     </div>
   </div>
 </template>
