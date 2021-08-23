@@ -201,6 +201,11 @@ export default defineComponent({
   z-index: revert;
 }
 
+.maplibregl-compare .compare-swiper-vertical {
+  backdrop-filter: blur(24px);
+  background-color: rgba(75, 85, 99, 0.5);
+}
+
 .hideCompare .maplibregl-compare {
   display: none;
 }
@@ -224,6 +229,11 @@ a.mapboxgl-ctrl-logo, a.maplibregl-ctrl-logo {
 .maplibregl-ctrl.maplibregl-ctrl-attrib:not(.maplibregl-compact),
 .maplibregl-ctrl.maplibregl-ctrl-attrib:not(.maplibregl-compact) a {
   color: rgba(255,255,255,0.75);
+}
+
+.mapboxgl-ctrl-attrib.mapboxgl-compact, .maplibregl-ctrl-attrib.maplibregl-compact {
+  margin: 1rem;
+  min-height: 24px;
 }
 
 </style>
