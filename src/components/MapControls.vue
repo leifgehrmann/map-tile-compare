@@ -7,7 +7,7 @@
     "
   >
     <div class="
-      bg-white dark:bg-gray-600 bg-opacity-50 dark:bg-opacity:70
+      bg-gray-600 bg-opacity-70
       backdrop-filter backdrop-blur-xl
       rounded-xl
       text-center
@@ -23,7 +23,6 @@
           id="showLabels"
           v-model="mountedShowLabels"
           type="checkbox"
-          class="opacity-10"
         >
         <label for="showLabels"></label>
       </div>
@@ -44,7 +43,6 @@
           id="showCompare"
           v-model="mountedShowCompare"
           type="checkbox"
-          class="opacity-10"
         >
         <label for="showCompare"></label>
       </div>
