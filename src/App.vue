@@ -4,7 +4,7 @@
     :show-compare="showCompare"
   />
   <div class="absolute top-4 left-4">
-    <ReferencePhoto/>
+    <ReferencePhoto />
   </div>
   <div class="absolute top-4 right-4">
     <MapControls

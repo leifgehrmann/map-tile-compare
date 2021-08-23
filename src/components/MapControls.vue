@@ -1,12 +1,14 @@
 <template>
-  <div class="
+  <div
+    class="
     text-white
     flex
     flex-col
     space-y-2
     "
   >
-    <div class="
+    <div
+      class="
       bg-gray-600 bg-opacity-70
       backdrop-filter backdrop-blur-xl
       rounded-xl
@@ -14,7 +16,8 @@
       shadow-lg
       "
     >
-      <div class="
+      <div
+        class="
         px-4 py-3
         w-12 h-12
         "
@@ -24,7 +27,7 @@
           v-model="mountedShowLabels"
           type="checkbox"
         >
-        <label for="showLabels"></label>
+        <label for="showLabels" />
       </div>
       <div
         class="
@@ -33,8 +36,9 @@
         h-px
         backdrop-filter backdrop-blur-xl backdrop-brightness-200
         "
-      ></div>
-      <div class="
+      />
+      <div
+        class="
         px-4 py-3
         w-12 h-12
         "
@@ -44,7 +48,7 @@
           v-model="mountedShowCompare"
           type="checkbox"
         >
-        <label for="showCompare"></label>
+        <label for="showCompare" />
       </div>
     </div>
   </div>

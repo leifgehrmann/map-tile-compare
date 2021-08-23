@@ -16,7 +16,10 @@
       shadow-lg
       "
     >
-      <img class="rounded-xl shadow-md" src="../assets/photo.jpg">
+      <img
+        class="rounded-xl shadow-md"
+        src="../assets/photo.jpg"
+      >
     </div>
   </div>
 </template>

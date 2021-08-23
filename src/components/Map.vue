@@ -151,7 +151,7 @@ export default defineComponent({
       if (this.showCompare) {
         this.addCompare(this.compareMap);
       } else {
-        this.removeCompare(this.compareMap)
+        this.removeCompare(this.compareMap);
       }
     }
   },
