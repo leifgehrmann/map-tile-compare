@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex justify-center"
+    class="flex justify-center pointer-events-none"
+    @click="mountedExpanded = !mountedExpanded"
   >
     <button
       class="
@@ -11,8 +12,9 @@
       relative
       self-center
       items-center
+      group
+      pointer-events-auto
       "
-      @click="mountedExpanded = !mountedExpanded"
     >
       <transition
         name="button-fade"
@@ -40,7 +42,7 @@
             src="../assets/close.svg"
             alt="Close image"
             title="Close image"
-            class="w-5 opacity-70"
+            class="w-5 transition-opacity opacity-70 group-hover:opacity-90"
           >
         </div>
       </transition>
@@ -70,7 +72,7 @@
             src="../assets/expand.svg"
             alt="Expand image"
             title="Expand image"
-            class="w-3 opacity-70"
+            class="w-3 transition-opacity opacity-70 group-hover:opacity-90"
           >
         </div>
       </transition>

@@ -20,6 +20,7 @@
         class="
         px-3 py-3
         w-12 h-12
+        group
         "
         @click="mountedShowLabels = !mountedShowLabels"
       >
@@ -27,7 +28,7 @@
           src="../assets/show-labels.svg"
           alt="Show labels"
           title="Show labels"
-          class="transition-opacity"
+          class="transition-opacity group-hover:opacity-70"
           :class="{'opacity-50': !mountedShowLabels}"
         >
       </button>
@@ -43,6 +44,7 @@
         class="
         px-3 py-3
         w-12 h-12
+        group
         "
         @click="mountedShowCompare = !mountedShowCompare"
       >
@@ -50,7 +52,7 @@
           src="../assets/show-compare.svg"
           alt="Show comparison"
           title="Show comparison"
-          class="transition-opacity"
+          class="transition-opacity group-hover:opacity-70"
           :class="{'opacity-50': !mountedShowCompare}"
         >
       </button>

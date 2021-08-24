@@ -1,42 +1,38 @@
 <template>
-  <transition name="fade">
-    <Map
-      v-if="showMap"
-      :source-tiles="sourceTiles"
-      :source-tile-scheme="sourceTileScheme"
-      :source-tile-size="sourceTileSize"
-      :source-min-zoom="sourceMinZoom"
-      :source-max-zoom="sourceMaxZoom"
-      :source-bounds="sourceBounds"
-      :show-labels="showLabels"
-      :show-compare="showCompare"
-    />
-  </transition>
-  <transition name="fade">
-    <div
-      v-if="showMap"
-      class="absolute top-0 right-0"
-    >
-      <div class="p-4">
-        <MapControls
-          :show-labels="showLabels"
-          :show-compare="showCompare"
-          @update:show-labels="showLabels = $event"
-          @update:show-compare="showCompare = $event"
-        />
-      </div>
+  <Map
+    v-if="showMap"
+    :source-tiles="sourceTiles"
+    :source-tile-scheme="sourceTileScheme"
+    :source-tile-size="sourceTileSize"
+    :source-min-zoom="sourceMinZoom"
+    :source-max-zoom="sourceMaxZoom"
+    :source-bounds="sourceBounds"
+    :show-labels="showLabels"
+    :show-compare="showCompare"
+  />
+  <div
+    v-if="showMap"
+    class="absolute top-0 right-0"
+  >
+    <div class="p-4">
+      <MapControls
+        :show-labels="showLabels"
+        :show-compare="showCompare"
+        @update:show-labels="showLabels = $event"
+        @update:show-compare="showCompare = $event"
+      />
     </div>
-  </transition>
+  </div>
   <div
     ref="referencePhotoContainer"
-    class="absolute top-0 left-0 w-28 md:w-40 transition-all"
+    class="absolute top-0 left-0 w-28 md:w-40 transition-all duration-300 pointer-events-none"
     :class="{
       'w-screen': referencePhotoExpanded,
       'md:w-screen': referencePhotoExpanded
     }"
   >
     <div
-      class="p-4"
+      class="p-4 pointer-events-none"
     >
       <ReferencePhoto
         :image-url="referencePhotoImageUrl"
@@ -118,11 +114,10 @@ export default defineComponent({
   mounted() {
     this.resizeSplashScreen();
     window.addEventListener('resize', () => {
-      // Wait until CSS transition has finished.
-      // 150ms is the default tailwindCSS transition.
+      // Wait until CSS transition for referencePhotoContainer has finished.
       setTimeout(() => {
         this.resizeSplashScreen();
-      }, 150);
+      }, 300);
     });
   },
   methods: {
@@ -132,18 +127,9 @@ export default defineComponent({
         const photoContainerHeight = photoContainer.clientHeight;
         const leftoverHeight = window.innerHeight - photoContainerHeight;
         const splashScreenContainer = this.$refs.splashScreenContainer as HTMLDivElement;
-        splashScreenContainer.style.height = `calc(${leftoverHeight}px + 1rem)`;
+        splashScreenContainer.style.minHeight = `calc(${leftoverHeight}px + 1rem)`;
       }
     },
   },
 });
 </script>
-
-<style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-</style>
