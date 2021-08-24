@@ -125,9 +125,9 @@ export default defineComponent({
     },
     referencePhotoMaxHeight(): string {
       if (this.showMap) {
-        return 'calc(100vh - 1rem - 3rem)';
+        return 'calc(100vh - 1rem - 3rem - env(safe-area-inset-bottom) - env(safe-area-inset-top))';
       }
-      return 'calc(100vh - 1rem - 3rem - 2rem - 1rem)';
+      return 'calc(100vh - 1rem - 3rem - 2rem - 1rem - env(safe-area-inset-bottom) - env(safe-area-inset-top))';
     },
   },
   mounted() {
