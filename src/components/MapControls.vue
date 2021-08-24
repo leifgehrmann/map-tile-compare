@@ -28,7 +28,7 @@
           src="../assets/show-labels.svg"
           alt="Show labels"
           title="Show labels"
-          class="transition-opacity group-hover:opacity-70"
+          class="transition-opacity"
           :class="{
             'opacity-50': !mountedShowLabels,
             'group-hover:opacity-70': !mountedShowLabels,
