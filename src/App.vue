@@ -55,7 +55,8 @@
   >
     <div class="p-4 h-full">
       <SplashScreen
-        @click="showMap = true; referencePhotoExpanded = false;"
+        :name="name"
+        @update:clicked="showMap = true; referencePhotoExpanded = false;"
       />
     </div>
   </div>
@@ -90,6 +91,7 @@ export default defineComponent({
     SplashScreen,
   },
   data: () => ({
+    name: 'Edinburgh',
     sourceTiles: 'https://tiles.leifgehrmann.com/tiles/edinburgh_2/{z}/{x}/{y}.png',
     sourceTileScheme: 'tms',
     sourceTileSize: 256,
