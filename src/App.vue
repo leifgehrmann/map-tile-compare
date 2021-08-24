@@ -89,11 +89,11 @@ export default defineComponent({
   data: () => ({
     name: 'Edinburgh',
     sourceTiles: 'https://tiles.leifgehrmann.com/tiles/edinburgh_2/{z}/{x}/{y}.png',
-    sourceTileScheme: 'tms',
+    sourceTileScheme: 'tms' as 'xyz'|'tms',
     sourceTileSize: 256,
     sourceMinZoom: 10,
     sourceMaxZoom: 15,
-    sourceBounds: [-3.4620, 55.8010, -3.09828, 55.9810],
+    sourceBounds: [-3.4620, 55.8010, -3.09828, 55.9810] as [number, number, number, number],
     showMap: false,
     showLabels: false,
     showCompare: false,
