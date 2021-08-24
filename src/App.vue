@@ -1,6 +1,9 @@
 <template>
   <Map
     v-if="showMap"
+    :before-style="beforeStyle"
+    :before-style-access-token="beforeStyleAccessToken"
+    :before-style-before-layer-id="beforeStyleBeforeLayerId"
     :source-tiles="sourceTiles"
     :source-tile-scheme="sourceTileScheme"
     :source-tile-size="sourceTileSize"
@@ -88,12 +91,15 @@ export default defineComponent({
   },
   data: () => ({
     name: 'Edinburgh',
+    beforeStyle: 'mapbox://styles/leifgehrmann/cksdm6ebv3u8417p1amevc6d6',
+    beforeStyleAccessToken: 'pk.eyJ1IjoibGVpZmdlaHJtYW5uIiwiYSI6Ik4waTNoeGMifQ.320CRn54CJk41-Dbm4iSLQ',
+    beforeStyleBeforeLayerId: 'tunnel-street-minor-low',
     sourceTiles: 'https://tiles.leifgehrmann.com/tiles/edinburgh_2/{z}/{x}/{y}.png',
     sourceTileScheme: 'tms' as 'xyz'|'tms',
     sourceTileSize: 256,
     sourceMinZoom: 10,
     sourceMaxZoom: 15,
-    sourceBounds: [-3.4620, 55.8010, -3.09828, 55.9810] as [number, number, number, number],
+    sourceBounds: [-3.4620, 55.8010, -3.09828, 55.9810],
     showMap: false,
     showLabels: false,
     showCompare: false,

@@ -36,6 +36,9 @@ interface MaplibreCompareInstance {
 export default defineComponent({
   name: 'Map',
   props: {
+    beforeStyle: { type: String, required: true },
+    beforeStyleAccessToken: { type: String, required: true },
+    beforeStyleBeforeLayerId: { type: String, required: true },
     sourceTiles: { type: String, required: true },
     sourceTileScheme: { type: String as () => 'xyz'|'tms', required: true },
     sourceTileSize: { type: Number, required: true },
@@ -80,21 +83,21 @@ export default defineComponent({
     },
   },
   mounted() {
-    maplibregl.accessToken = 'pk.eyJ1IjoibGVpZmdlaHJtYW5uIiwiYSI6Ik4waTNoeGMifQ.320CRn54CJk41-Dbm4iSLQ';
     let bounds = [-180, -90, 180, 90] as [number, number, number, number];
     if (this.sourceBounds.length === 4) {
       bounds = this.sourceBounds as [number, number, number, number];
     }
 
+    maplibregl.accessToken = this.beforeStyleAccessToken;
     const beforeMap = new maplibregl.Map({
       container: 'before',
-      style: 'mapbox://styles/leifgehrmann/cksdm6ebv3u8417p1amevc6d6',
+      style: this.beforeStyle,
       bounds,
     });
 
     const afterMap = new maplibregl.Map({
       container: 'after',
-      style: 'mapbox://styles/leifgehrmann/cksdm6ebv3u8417p1amevc6d6',
+      style: this.beforeStyle,
       bounds,
     });
 
@@ -130,7 +133,7 @@ export default defineComponent({
           source: 'map-tile-source',
           paint: {},
         },
-        'tunnel-street-minor-low',
+        this.beforeStyleBeforeLayerId,
       );
       if (!this.showLabels) {
         this.afterMapLabelBackups = this.removeLabels(this.afterMap);
