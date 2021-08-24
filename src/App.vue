@@ -85,7 +85,11 @@ document.addEventListener('gestureend', (e) => {
 });
 
 const dataCompressed = window.location.hash.substring(1);
-const dataUncompressed = JSON.parse(LZString.decompressFromBase64(dataCompressed));
+const dataUncompressedJson = LZString.decompressFromBase64(dataCompressed);
+if (dataUncompressedJson === null) {
+  throw new Error('Invalid data. Please use the README for instructions on how to setup the map data.');
+}
+const dataUncompressed = JSON.parse(dataUncompressedJson);
 
 export default defineComponent({
   name: 'App',
