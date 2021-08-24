@@ -14,38 +14,66 @@
       "
       @click="mountedExpanded = !mountedExpanded"
     >
-      <div
-        v-if="showResizeButton"
-        class="
-          bg-gray-600 bg-opacity-70
-          backdrop-filter backdrop-blur-xl
-          rounded-lg
-          absolute
-          top-1
-          right-1
-          p-1
-        "
-        :class="{
-          'top-2': mountedExpanded,
-          'right-2': mountedExpanded,
-          'p-2': mountedExpanded
-        }"
+      <transition
+        name="button-fade"
+        mode="out-in"
       >
-        <img
-          v-if="mountedExpanded"
-          src="../assets/close.svg"
-          alt="Close image"
-          title="Close image"
-          class="w-5 opacity-70"
+        <div
+          v-if="showResizeButton && mountedExpanded"
+          class="
+            bg-gray-600 bg-opacity-70
+            backdrop-filter backdrop-blur-xl
+            rounded-lg
+            absolute
+            top-1
+            right-1
+            p-1
+          "
+          :class="{
+            'top-2': mountedExpanded,
+            'right-2': mountedExpanded,
+            'p-2': mountedExpanded
+          }"
         >
-        <img
-          v-else
-          src="../assets/expand.svg"
-          alt="Expand image"
-          title="Expand image"
-          class="w-3 opacity-70"
+          <img
+            v-if="mountedExpanded"
+            src="../assets/close.svg"
+            alt="Close image"
+            title="Close image"
+            class="w-5 opacity-70"
+          >
+        </div>
+      </transition>
+      <transition
+        name="button-fade"
+        mode="out-in"
+      >
+        <div
+          v-if="showResizeButton && !mountedExpanded"
+          class="
+            bg-gray-600 bg-opacity-70
+            backdrop-filter backdrop-blur-xl
+            rounded-lg
+            absolute
+            top-1
+            right-1
+            p-1
+          "
+          :class="{
+            'top-2': mountedExpanded,
+            'right-2': mountedExpanded,
+            'p-2': mountedExpanded
+          }"
         >
-      </div>
+          <img
+            v-if="!mountedExpanded"
+            src="../assets/expand.svg"
+            alt="Expand image"
+            title="Expand image"
+            class="w-3 opacity-70"
+          >
+        </div>
+      </transition>
       <img
         ref="image"
         class="rounded-xl shadow-md"
@@ -108,6 +136,14 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-
+<style>
+.button-fade-leave-active {
+  transition: opacity .150s ease 0s;
+}
+.button-fade-enter-active {
+  transition: opacity .150s ease .075s;
+}
+.button-fade-enter-from, .button-fade-leave-active {
+  opacity: 0;
+}
 </style>
