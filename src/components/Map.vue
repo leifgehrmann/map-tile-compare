@@ -36,14 +36,14 @@ interface MaplibreCompareInstance {
 export default defineComponent({
   name: 'Map',
   props: {
-    showLabels: {
-      type: Boolean,
-      required: true,
-    },
-    showCompare: {
-      type: Boolean,
-      required: true,
-    },
+    sourceTiles: { type: String, required: true },
+    sourceTileScheme: { type: String, required: true },
+    sourceTileSize: { type: Number, required: true },
+    sourceMinZoom: { type: Number, required: true },
+    sourceMaxZoom: { type: Number, required: true },
+    sourceBounds: { type: Array, required: true },
+    showLabels: { type: Boolean, required: true },
+    showCompare: { type: Boolean, required: true },
   },
   setup: () => {
     const count = ref(0);
@@ -111,22 +111,20 @@ export default defineComponent({
       if (this.afterMap === null) {
         throw new Error('afterMap is null when it should not be');
       }
-      this.afterMap.addSource('edinburgh_2', {
+      this.afterMap.addSource('map-tile-source', {
         type: 'raster',
-        tiles: [
-          'https://tiles.leifgehrmann.com/edinburgh_2/{z}/{x}/{y}.png',
-        ],
-        scheme: 'tms',
-        minzoom: 10,
-        maxzoom: 15,
-        tileSize: 256,
-        bounds: [-3.4620, 55.8010, -3.09828, 55.9810],
+        tiles: [this.sourceTiles],
+        scheme: this.sourceTileScheme,
+        minzoom: this.sourceMinZoom,
+        maxzoom: this.sourceMaxZoom,
+        tileSize: this.sourceTileSize,
+        bounds: this.sourceBounds,
       });
       this.afterMap.addLayer(
         {
-          id: 'edinburgh_2-layer',
+          id: 'map-tile-layer',
           type: 'raster',
-          source: 'edinburgh_2',
+          source: 'map-tile-source',
           paint: {},
         },
         'tunnel-street-minor-low',
@@ -172,7 +170,6 @@ export default defineComponent({
       }
       const layerBackups = [];
       for (let i = layers.length - 1; i > 0; i -= 1) {
-        // console.log(layers[i].type, layers[i]);
         if (layers[i].type === 'symbol' || layers[i].type === 'line') {
           map.removeLayer(layers[i].id);
           layerBackups.push({

@@ -76,8 +76,9 @@
       </transition>
       <img
         ref="image"
-        class="rounded-xl shadow-md"
-        src="../assets/photo.jpg"
+        class="rounded-xl shadow-md bg-gray-300 dark:bg-gray-800 color-black bg-opacity-50"
+        alt="Reference photo associated with the map"
+        :src="imageUrl"
         @load="$emit('update:imageLoaded')"
       >
     </button>
@@ -90,6 +91,10 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'ReferencePhoto',
   props: {
+    imageUrl: {
+      type: String,
+      required: true,
+    },
     expanded: {
       type: Boolean,
       required: true,

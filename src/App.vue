@@ -2,6 +2,12 @@
   <transition name="fade">
     <Map
       v-if="showMap"
+      :source-tiles="sourceTiles"
+      :source-tile-scheme="sourceTileScheme"
+      :source-tile-size="sourceTileSize"
+      :source-min-zoom="sourceMinZoom"
+      :source-max-zoom="sourceMaxZoom"
+      :source-bounds="sourceBounds"
       :show-labels="showLabels"
       :show-compare="showCompare"
     />
@@ -33,6 +39,7 @@
       class="p-4"
     >
       <ReferencePhoto
+        :image-url="referencePhotoImageUrl"
         :expanded="referencePhotoExpanded"
         :max-height="referencePhotoMaxHeight"
         :show-resize-button="referencePhotoShowResizeButton"
@@ -83,9 +90,16 @@ export default defineComponent({
     SplashScreen,
   },
   data: () => ({
+    sourceTiles: 'https://tiles.leifgehrmann.com/tiles/edinburgh_2/{z}/{x}/{y}.png',
+    sourceTileScheme: 'tms',
+    sourceTileSize: 256,
+    sourceMinZoom: 10,
+    sourceMaxZoom: 15,
+    sourceBounds: [-3.4620, 55.8010, -3.09828, 55.9810],
     showMap: false,
     showLabels: false,
     showCompare: false,
+    referencePhotoImageUrl: 'https://tiles.leifgehrmann.com/previews/edinburgh_2.jpg',
     referencePhotoExpanded: true,
   }),
   computed: {
