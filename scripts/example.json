@@ -1,0 +1,13 @@
+{
+  "n": "Sample Name",
+  "bS": "mapbox://styles/mapboxUsername/styleId",
+  "bSAT": "xx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxx-xxxxxxxx",
+  "bSBLI": "tunnel-street-minor-low",
+  "sT": "https://example.com/tiles/{z}/{x}/{y}.png",
+  "sTSc": "tms",
+  "sTSi": 256,
+  "sMin": 10,
+  "sMax": 15,
+  "sB": [-3.4620, 55.8010, -3.09828, 55.9810],
+  "rPIU": "https://example.com/previewImage.jpg"
+}

@@ -65,6 +65,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { PaddingOptions } from 'maplibre-gl';
+import LZString from 'lz-string';
 import Map from './components/Map.vue';
 import MapControls from './components/MapControls.vue';
 import ReferencePhoto from './components/ReferencePhoto.vue';
@@ -83,6 +84,9 @@ document.addEventListener('gestureend', (e) => {
   e.preventDefault();
 });
 
+const dataCompressed = window.location.hash.substring(1);
+const dataUncompressed = JSON.parse(LZString.decompressFromBase64(dataCompressed));
+
 export default defineComponent({
   name: 'App',
   components: {
@@ -92,21 +96,21 @@ export default defineComponent({
     SplashScreen,
   },
   data: () => ({
-    name: 'Edinburgh',
-    beforeStyle: 'mapbox://styles/leifgehrmann/cksdm6ebv3u8417p1amevc6d6',
-    beforeStyleAccessToken: 'pk.eyJ1IjoibGVpZmdlaHJtYW5uIiwiYSI6Ik4waTNoeGMifQ.320CRn54CJk41-Dbm4iSLQ',
-    beforeStyleBeforeLayerId: 'tunnel-street-minor-low',
-    sourceTiles: 'https://tiles.leifgehrmann.com/tiles/edinburgh_2/{z}/{x}/{y}.png',
-    sourceTileScheme: 'tms' as 'xyz'|'tms',
-    sourceTileSize: 256,
-    sourceMinZoom: 10,
-    sourceMaxZoom: 15,
-    sourceBounds: [-3.4620, 55.8010, -3.09828, 55.9810],
+    name: dataUncompressed.n,
+    beforeStyle: dataUncompressed.bS,
+    beforeStyleAccessToken: dataUncompressed.bSAT,
+    beforeStyleBeforeLayerId: dataUncompressed.bSBLI,
+    sourceTiles: dataUncompressed.sT,
+    sourceTileScheme: dataUncompressed.sTSc as 'xyz'|'tms',
+    sourceTileSize: dataUncompressed.sTSi,
+    sourceMinZoom: dataUncompressed.sMin,
+    sourceMaxZoom: dataUncompressed.sMax,
+    sourceBounds: dataUncompressed.sB,
+    referencePhotoImageUrl: dataUncompressed.rPIU,
+    referencePhotoExpanded: true,
     showMap: false,
     showLabels: false,
     showCompare: false,
-    referencePhotoImageUrl: 'https://tiles.leifgehrmann.com/previews/edinburgh_2.jpg',
-    referencePhotoExpanded: true,
     uiPadding: {
       left: 0, right: 0, top: 0, bottom: 0,
     } as PaddingOptions,
