@@ -184,6 +184,9 @@ export default defineComponent({
       return layerBackups;
     },
     addCompare(compareMap: MaplibreCompareInstance): void {
+      if (this.compareMapCurrentPosition >= window.innerWidth) {
+        this.compareMapCurrentPosition = window.innerWidth / 2;
+      }
       if (compareMap.currentPosition <= 0 || compareMap.currentPosition >= window.innerWidth) {
         compareMap.setSlider(this.compareMapCurrentPosition);
       }
