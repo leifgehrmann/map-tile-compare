@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import maplibregl from 'maplibre-gl';
+import maplibregl, { PaddingOptions } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import MaplibreCompare from '@maplibre/maplibre-gl-compare';
 import '@maplibre/maplibre-gl-compare/dist/maplibre-gl-compare.css';
@@ -47,6 +47,7 @@ export default defineComponent({
     sourceBounds: { type: Array as () => number[], required: true },
     showLabels: { type: Boolean, required: true },
     showCompare: { type: Boolean, required: true },
+    uiPadding: { type: Object as () => PaddingOptions, required: true },
   },
   setup: () => {
     const count = ref(0);
@@ -101,6 +102,9 @@ export default defineComponent({
       bounds,
     });
 
+    beforeMap.fitBounds(bounds, { padding: this.uiPadding });
+    afterMap.fitBounds(bounds, { padding: this.uiPadding });
+
     this.afterMap = afterMap;
     this.beforeMap = beforeMap;
 
@@ -139,15 +143,6 @@ export default defineComponent({
         this.afterMapLabelBackups = this.removeLabels(this.afterMap);
       }
     });
-
-    // window.addEventListener('resize', () => {
-    //   afterMap.easeTo({
-    //     padding: {
-    //       right: 75,
-    //     },
-    //     duration: 1000,
-    //   });
-    // });
 
     // eslint-disable-next-line no-new
     this.compareMap = new MaplibreCompare(beforeMap, afterMap, '#comparison-container');

@@ -12,6 +12,7 @@
     :source-bounds="sourceBounds"
     :show-labels="showLabels"
     :show-compare="showCompare"
+    :ui-padding="uiPadding"
   />
   <div
     v-if="showMap"
@@ -63,6 +64,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { PaddingOptions } from 'maplibre-gl';
 import Map from './components/Map.vue';
 import MapControls from './components/MapControls.vue';
 import ReferencePhoto from './components/ReferencePhoto.vue';
@@ -105,6 +107,9 @@ export default defineComponent({
     showCompare: false,
     referencePhotoImageUrl: 'https://tiles.leifgehrmann.com/previews/edinburgh_2.jpg',
     referencePhotoExpanded: true,
+    uiPadding: {
+      left: 0, right: 0, top: 0, bottom: 0,
+    } as PaddingOptions,
   }),
   computed: {
     referencePhotoShowResizeButton(): boolean {
@@ -119,7 +124,9 @@ export default defineComponent({
   },
   mounted() {
     this.resizeSplashScreen();
+    this.uiPadding = this.computeUiPadding();
     window.addEventListener('resize', () => {
+      this.uiPadding = this.computeUiPadding();
       // Wait until CSS transition for referencePhotoContainer has finished.
       setTimeout(() => {
         this.resizeSplashScreen();
@@ -135,6 +142,29 @@ export default defineComponent({
         const splashScreenContainer = this.$refs.splashScreenContainer as HTMLDivElement;
         splashScreenContainer.style.minHeight = `calc(${leftoverHeight}px + 1rem)`;
       }
+    },
+    computeUiPadding(): PaddingOptions {
+      const pixelsPerRem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const referencePhotoWidth = pixelsPerRem * (1 + 7 / 2 + 1);
+      const mapControlWidth = pixelsPerRem * (1 + 3 + 1);
+      const expectedMaxWidth = window.innerWidth - referencePhotoWidth - mapControlWidth;
+      const mapControlHeight = pixelsPerRem * (1 + 3 + 3 + 1);
+      const mapAttributionHeight = pixelsPerRem * (3);
+      const expectedMaxHeight = window.innerHeight - mapControlHeight - mapAttributionHeight;
+      if (expectedMaxHeight > expectedMaxWidth) {
+        return {
+          left: pixelsPerRem,
+          right: pixelsPerRem,
+          top: mapControlHeight,
+          bottom: mapAttributionHeight,
+        };
+      }
+      return {
+        left: referencePhotoWidth,
+        right: mapControlWidth,
+        top: pixelsPerRem,
+        bottom: mapAttributionHeight,
+      };
     },
   },
 });
