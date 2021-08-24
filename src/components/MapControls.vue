@@ -66,11 +66,11 @@ export default defineComponent({
   props: {
     showLabels: {
       type: Boolean,
-      default: (): boolean => false,
+      required: true,
     },
     showCompare: {
       type: Boolean,
-      default: (): boolean => false,
+      required: true,
     },
   },
   emits: [
