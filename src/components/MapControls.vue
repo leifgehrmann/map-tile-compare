@@ -29,7 +29,10 @@
           alt="Show labels"
           title="Show labels"
           class="transition-opacity group-hover:opacity-70"
-          :class="{'opacity-50': !mountedShowLabels}"
+          :class="{
+            'opacity-50': !mountedShowLabels,
+            'group-hover:opacity-70': !mountedShowLabels,
+          }"
         >
       </button>
       <div
@@ -52,8 +55,11 @@
           src="../assets/show-compare.svg"
           alt="Show comparison"
           title="Show comparison"
-          class="transition-opacity group-hover:opacity-70"
-          :class="{'opacity-50': !mountedShowCompare}"
+          class="transition-opacity"
+          :class="{
+            'opacity-50': !mountedShowCompare,
+            'group-hover:opacity-70': !mountedShowCompare,
+          }"
         >
       </button>
     </div>
