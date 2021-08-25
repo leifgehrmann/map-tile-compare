@@ -9,7 +9,7 @@
   >
     <div
       class="
-      bg-gray-600 bg-opacity-70
+      bg-gray-800 bg-opacity-70
       backdrop-filter backdrop-blur-xl
       rounded-xl
       text-center
@@ -22,22 +22,26 @@
         w-12 h-12
         group
         "
+        aria-label="Toggle labels"
+        title="Toggle labels"
         @click="mountedShowLabels = !mountedShowLabels"
       >
         <img
-          src="../assets/show-labels.svg"
-          alt="Show labels"
-          title="Show labels"
-          class="transition-opacity"
-          :class="{
-            'opacity-50': !mountedShowLabels,
-            'group-hover:opacity-70': !mountedShowLabels,
-          }"
+          v-if="mountedShowLabels"
+          src="../assets/show-labels-active.svg"
+          alt="Labels are enabled"
+          aria-hidden="true"
+        >
+        <img
+          v-else
+          src="../assets/show-labels-inactive.svg"
+          alt="labels are disabled"
+          aria-hidden="true"
         >
       </button>
       <div
         class="
-        bg-gray-600 bg-opacity-50
+        bg-gray-800 bg-opacity-50
         w-12
         h-px
         backdrop-filter backdrop-blur-xl backdrop-brightness-200
@@ -47,19 +51,22 @@
         class="
         px-3 py-3
         w-12 h-12
-        group
         "
+        aria-label="Toggle compare mode"
+        title="Toggle compare mode"
         @click="mountedShowCompare = !mountedShowCompare"
       >
         <img
-          src="../assets/show-compare.svg"
-          alt="Show comparison"
-          title="Show comparison"
-          class="transition-opacity"
-          :class="{
-            'opacity-50': !mountedShowCompare,
-            'group-hover:opacity-70': !mountedShowCompare,
-          }"
+          v-if="mountedShowCompare"
+          src="../assets/show-compare-active.svg"
+          alt="Compare mode is disabled"
+          aria-hidden="true"
+        >
+        <img
+          v-else
+          src="../assets/show-compare-inactive.svg"
+          alt="Compare mode is disabled"
+          aria-hidden="true"
         >
       </button>
     </div>

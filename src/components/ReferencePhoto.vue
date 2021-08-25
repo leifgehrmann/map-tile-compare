@@ -12,7 +12,6 @@
       relative
       self-center
       items-center
-      group
       pointer-events-auto
       "
     >
@@ -23,7 +22,7 @@
         <div
           v-if="showResizeButton && mountedExpanded"
           class="
-            bg-gray-600 bg-opacity-70
+            bg-gray-800 bg-opacity-70
             backdrop-filter backdrop-blur-xl
             rounded-lg
             absolute
@@ -42,7 +41,7 @@
             src="../assets/close.svg"
             alt="Close image"
             title="Close image"
-            class="w-5 transition-opacity opacity-70 group-hover:opacity-90"
+            class="w-5"
           >
         </div>
       </transition>
@@ -53,7 +52,7 @@
         <div
           v-if="showResizeButton && !mountedExpanded"
           class="
-            bg-gray-600 bg-opacity-70
+            bg-gray-800 bg-opacity-70
             backdrop-filter backdrop-blur-xl
             rounded-lg
             absolute
@@ -72,7 +71,7 @@
             src="../assets/expand.svg"
             alt="Expand image"
             title="Expand image"
-            class="w-3 transition-opacity opacity-70 group-hover:opacity-90"
+            class="w-3"
           >
         </div>
       </transition>

@@ -224,7 +224,7 @@ a.mapboxgl-ctrl-logo, a.maplibregl-ctrl-logo {
   border-radius: 15px;
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(24px);
-  background-color: rgba(117, 117, 117, 0.5);
+  background-color: rgba(66, 66, 66, 0.5);
 }
 
 .maplibregl-ctrl.maplibregl-ctrl-attrib:not(.maplibregl-compact),
