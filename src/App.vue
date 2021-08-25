@@ -28,6 +28,7 @@
     </div>
   </div>
   <div
+    v-if="referencePhotoImageUrl !== ''"
     ref="referencePhotoContainer"
     class="absolute top-0 left-0 w-28 md:w-40 transition-all duration-300 pointer-events-none"
     :class="{
@@ -65,7 +66,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { PaddingOptions } from 'maplibre-gl';
-import LZString from 'lz-string';
 import Map from './components/Map.vue';
 import MapControls from './components/MapControls.vue';
 import ReferencePhoto from './components/ReferencePhoto.vue';
@@ -84,13 +84,6 @@ document.addEventListener('gestureend', (e) => {
   e.preventDefault();
 });
 
-const dataCompressed = window.location.hash.substring(1);
-const dataUncompressedJson = LZString.decompressFromBase64(dataCompressed);
-if (dataUncompressedJson === null) {
-  throw new Error('Invalid data. Please use the README for instructions on how to setup the map data.');
-}
-const dataUncompressed = JSON.parse(dataUncompressedJson);
-
 export default defineComponent({
   name: 'App',
   components: {
@@ -100,17 +93,17 @@ export default defineComponent({
     SplashScreen,
   },
   data: () => ({
-    name: dataUncompressed.n,
-    beforeStyle: dataUncompressed.bS,
-    beforeStyleAccessToken: dataUncompressed.bSAT,
-    beforeStyleBeforeLayerId: dataUncompressed.bSBLI,
-    sourceTiles: dataUncompressed.sT,
-    sourceTileScheme: dataUncompressed.sTSc as 'xyz'|'tms',
-    sourceTileSize: dataUncompressed.sTSi,
-    sourceMinZoom: dataUncompressed.sMin,
-    sourceMaxZoom: dataUncompressed.sMax,
-    sourceBounds: dataUncompressed.sB,
-    referencePhotoImageUrl: dataUncompressed.rPIU,
+    name: '',
+    beforeStyle: '',
+    beforeStyleAccessToken: '',
+    beforeStyleBeforeLayerId: '',
+    sourceTiles: '',
+    sourceTileScheme: 'xyz' as 'xyz'|'tms',
+    sourceTileSize: 256,
+    sourceMinZoom: 1,
+    sourceMaxZoom: 10,
+    sourceBounds: [-180, -90, 180, 90],
+    referencePhotoImageUrl: '',
     referencePhotoExpanded: true,
     showMap: false,
     showLabels: false,
@@ -130,7 +123,8 @@ export default defineComponent({
       return 'calc(100vh - 1rem - 3rem - 2rem - 1rem - env(safe-area-inset-bottom) - env(safe-area-inset-top))';
     },
   },
-  mounted() {
+  async mounted() {
+    await this.loadConfig();
     this.resizeSplashScreen();
     this.uiPadding = this.computeUiPadding();
     window.addEventListener('resize', () => {
@@ -142,6 +136,23 @@ export default defineComponent({
     });
   },
   methods: {
+    async loadConfig(): Promise<void> {
+      const configUrlEncoded = window.location.hash.substring(1);
+      const configUrl = decodeURIComponent(configUrlEncoded);
+      const config = await fetch(configUrl).then((response) => response.json());
+
+      this.name = config.name;
+      this.beforeStyle = config.beforeStyle;
+      this.beforeStyleAccessToken = config.beforeStyleAccessToken;
+      this.beforeStyleBeforeLayerId = config.beforeStyleBeforeLayerId;
+      this.sourceTiles = config.sourceTiles;
+      this.sourceTileScheme = config.sourceTileScheme;
+      this.sourceTileSize = config.sourceTileSize;
+      this.sourceMinZoom = config.sourceMinZoom;
+      this.sourceMaxZoom = config.sourceMaxZoom;
+      this.sourceBounds = config.sourceBounds;
+      this.referencePhotoImageUrl = config.referencePhotoImageUrl;
+    },
     resizeSplashScreen(): void {
       if (!this.showMap) {
         const photoContainer = this.$refs.referencePhotoContainer as HTMLDivElement;

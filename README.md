@@ -1,7 +1,11 @@
 # map-tile-compare
-A single-page web application for comparing a tile layer with a background satellite layer
+A single-page web application for comparing a tile layer with a background satellite layer.
 
-## Running the app
+## Demos
+
+* [Edinburgh](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/edinburgh_2.json)
+
+## Installing the app
 
 After cloning this repository, run:
 
@@ -12,53 +16,64 @@ $ npm run build
 $ npm run serve
 ```
 
-This should start a localhost server on a unique port, usually `http://localhost:5000`.
+This should start a localhost server, usually `http://localhost:5000`.
 
-For the page to load you'll need to append the compressed data to the end of the URL, like the example below. See the
-_Creating a map_ for instructions on how to generate the compressed string.
+For the page to load you'll need to append a URL to a config file to the URL.
 
 ```
-http://localhost:5000/#N4IgdiBcIMoIYFsAOA...
-``` 
+http://localhost:5000/#https://example.com/path/to/config.json
+```
 
-## Creating a map
+## Creating a map config
 
 The map data is a compressed JSON string stored in the URL's hash.
 
-First, make a copy of the `scripts/example.json` and update each property to your choosing.
+Host the following JSON file on a website and update each property to your choosing:
+
+```json
+{
+  "name": "London",
+  "beforeStyle": "mapbox://styles/mapboxUsername/styleId",
+  "beforeStyleAccessToken": "xx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxx-xxxxxxxx",
+  "beforeStyleBeforeLayerId": "tunnel-street-minor-low",
+  "sourceTiles": "https://example.com/tiles/{z}/{x}/{y}.png",
+  "sourceTileScheme": "tms",
+  "sourceTileSize": 256,
+  "sourceMinZoom": 9,
+  "sourceMaxZoom": 15,
+  "sourceBounds": [-0.234, 51.454, -0.025, 51.562],
+  "referencePhotoImageUrl": "https://example.com/previewImage.jpg"
+}
+```
+
 The table below explains the meaning of each property:
 
 | Property | Description |
 |---|---|
-| `n` | The name of the map. This is displayed on the splash screen. |
-| `bS` | The mapbox style url for the "before" map, typically the "Satellite" style. |
-| `bSAT` | The mapbox access token. |
-| `bSBLI` | The layer id within the "before" map style where you want to insert your "after" map layer. It's usually the layer immediately above the raster layer. |
-| `sT` | The URL to your map tiles. |
-| `sTSc` | The schema for your map tiles. Either `"xyz"` or `"tms"`. |
-| `sTSi` | The image size of your map tiles in pixels. |
-| `sMin` | The minimum zoom level of your map tiles. |
-| `sMax` | The maximum zoom level of your map tiles. |
-| `sB` | The bounding box of your map tiles. In the order of: left-longitude, bottom-latitude, right-longitude, top-latitude. |
-| `rPIU` | The URL to the preview image to display before loading the map. |
+| `name` | The name of the map. This is displayed on the splash screen. |
+| `beforeStyle` | The mapbox style url for the "before" map, typically the "Satellite" style. |
+| `beforeStyleAccessToken` | The mapbox access token for the "before" map style. |
+| `beforeStyleBeforeLayerId` | The layer id within the "before" map style where you want to insert your "after" map layer. It's usually the layer immediately above the raster layer. |
+| `sourceTiles` | The URL to your map tiles. |
+| `sourceTileScheme` | The schema for your map tiles. Either `"xyz"` or `"tms"`. |
+| `sourceTileSize` | The image size of your map tiles in pixels. |
+| `sourceMinZoom` | The minimum zoom level of your map tiles. |
+| `sourceMaxZoom` | The maximum zoom level of your map tiles. |
+| `sourceBounds` | The bounding box of your map tiles. In the order of: left-longitude, bottom-latitude, right-longitude, top-latitude. |
+| `referencePhotoImageUrl` | The URL to the preview image to display before loading the map. |
 
-Then run `compress.js` with your JSON file to generate the hash.
+After creating the JSON, you have two options:
 
-```console
-$ node scripts/compress.js scripts/example.json
-N4IgdiBcIMoIYFsAOA...
-$
+* Store the JSON to an external host.
+* Store the JSON file in the `public/` directory and run `npm run build`. The file can then be accessed via `http://localhost:5000/yourConfig.json`.
+
+Grab the URL to the JSON and append it to the app's host URL:
+
+```
+http://locahost:5000/#http://localhost/5000/config.json
 ```
 
-You can also decompress an existing string by running `decompress.js`.
-
-```console
-$ node scripts/compress.js N4IgdiBcIMoIYFsAOA...
-{
-  n: 'Sample Name',
-  ... 
-}
-```
+Your config will now load in the browser!
 
 ## Development
 
