@@ -52,13 +52,28 @@
   <div
     v-if="!showMap"
     ref="splashScreenContainer"
-    class="absolute bottom-0 left-0 w-screen"
+    class="absolute bottom-0 left-0 w-screen transition-all duration-300"
   >
     <div class="p-4 h-full">
-      <SplashScreen
-        :name="name"
-        @update:clicked="showMap = true; referencePhotoExpanded = false;"
-      />
+      <div class="h-full flex justify-center items-center">
+        <button
+          ref="splashScreenButton"
+          class="
+            bg-black dark:bg-gray-600 bg-opacity-70
+            backdrop-filter backdrop-blur-xl
+            text-white dark:text-gray-200
+            rounded-xl px-4 py-3
+          "
+          @click="showMap = true; referencePhotoExpanded = false;"
+        >
+          <span v-if="name !== ''">
+            <span class="font-bold">{{ name }}</span> – Click to Load Map
+          </span>
+          <span v-else>
+            Click to Load Map
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -69,7 +84,6 @@ import { PaddingOptions } from 'maplibre-gl';
 import Map from './components/Map.vue';
 import MapControls from './components/MapControls.vue';
 import ReferencePhoto from './components/ReferencePhoto.vue';
-import SplashScreen from './components/SplashScreen.vue';
 
 // Prevent pinch gestures
 document.addEventListener('gesturestart', (e) => {
@@ -90,7 +104,6 @@ export default defineComponent({
     Map,
     MapControls,
     ReferencePhoto,
-    SplashScreen,
   },
   data: () => ({
     name: '',
@@ -105,6 +118,9 @@ export default defineComponent({
     sourceBounds: [-180, -90, 180, 90],
     referencePhotoImageUrl: '',
     referencePhotoExpanded: true,
+    windowHeight: window.innerHeight,
+    // Use a non-zero value to avoid some obvious jitter
+    splashScreenButtonHeight: 48,
     showMap: false,
     showLabels: false,
     showCompare: false,
@@ -117,17 +133,23 @@ export default defineComponent({
       return this.showMap;
     },
     referencePhotoMaxHeight(): string {
+      const padding = '1rem';
       if (this.showMap) {
-        return 'calc(100vh - 1rem - 3rem - env(safe-area-inset-bottom) - env(safe-area-inset-top))';
+        const mapAttributionHeight = '1rem';
+        return `calc(${this.windowHeight}px - ${padding} - ${padding} - ${mapAttributionHeight} - ${padding})`;
       }
-      return 'calc(100vh - 1rem - 3rem - 2rem - 1rem - env(safe-area-inset-bottom) - env(safe-area-inset-top))';
+      return `calc(${this.windowHeight}px - ${padding} - ${padding} - ${this.splashScreenButtonHeight}px - ${padding})`;
     },
   },
   async mounted() {
     await this.loadConfig();
-    this.resizeSplashScreen();
+    this.windowHeight = window.innerHeight;
     this.uiPadding = this.computeUiPadding();
+    setTimeout(() => {
+      this.resizeSplashScreen();
+    }, 300);
     window.addEventListener('resize', () => {
+      this.windowHeight = window.innerHeight;
       this.uiPadding = this.computeUiPadding();
       // Wait until CSS transition for referencePhotoContainer has finished.
       setTimeout(() => {
@@ -155,11 +177,18 @@ export default defineComponent({
     },
     resizeSplashScreen(): void {
       if (!this.showMap) {
-        const photoContainer = this.$refs.referencePhotoContainer as HTMLDivElement;
-        const photoContainerHeight = photoContainer.clientHeight;
-        const leftoverHeight = window.innerHeight - photoContainerHeight;
-        const splashScreenContainer = this.$refs.splashScreenContainer as HTMLDivElement;
-        splashScreenContainer.style.minHeight = `calc(${leftoverHeight}px + 1rem)`;
+        window.requestAnimationFrame(() => {
+          const splashScreenButton = this.$refs.splashScreenButton as HTMLDivElement|null;
+          if (splashScreenButton !== null) {
+            this.splashScreenButtonHeight = splashScreenButton.clientHeight;
+          }
+
+          const photoContainer = this.$refs.referencePhotoContainer as HTMLDivElement;
+          const photoContainerHeight = photoContainer.clientHeight;
+          const leftoverHeight = window.innerHeight - photoContainerHeight;
+          const splashScreenContainer = this.$refs.splashScreenContainer as HTMLDivElement;
+          splashScreenContainer.style.height = `calc(${leftoverHeight}px + 1rem)`;
+        });
       }
     },
     computeUiPadding(): PaddingOptions {
