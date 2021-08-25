@@ -138,7 +138,7 @@ export default defineComponent({
         const mapAttributionHeight = '1rem';
         return `calc(${this.windowHeight}px - ${padding} - ${padding} - ${mapAttributionHeight} - ${padding})`;
       }
-      return `calc(${this.windowHeight}px - ${padding} - ${padding} - ${this.splashScreenButtonHeight}px - ${padding})`;
+      return `calc(${this.windowHeight}px - ${padding} - ${padding} - ${this.splashScreenButtonHeight}px - ${padding} - env(safe-area-inset-bottom) - env(safe-area-inset-top))`;
     },
   },
   async mounted() {
