@@ -1,11 +1,11 @@
 describe('map-tile-compare', () => {
   beforeEach(() => {
-    const hashData = 'N4IgdghgtgpiBcICiATAlmARgVwE4HMALEAGhEwGUEQoIAHTAewA94B6NgZwBcBPAGxic2gtADN8MQrlpgwbAMYBrTiigA2GJgBuAZmwAOACwBGAOx0T0GNoXqU60uQoBBACrU6SgHQxeAKRMASQArRjRMAHEANToALSgUfggACX9uAE0AdQBWbCC0AHc0DIog9SClI0KINwA5RhhIgFlxAEVvXQAmAAYAYQAlMByjPv8qkwBaABFMKCM0CgAZNqdKACEloOpubDkYfkmeXBgYbkmoDEZcSf5GQqdOD0RCbm46TnY2bjRBTm9RBIpDIIHJvApGFBvr8hGwYOgsHgiAB9LpsYAALwAvujmDjgLwsd46GB8I83BQFDsoJxyRQ0Agujl1GROK0wAgTD1Wc0IMxOTlWesEABtSa6bxGdRdEg5HLeAw9EwkcXeHoATgMXQMsvlmpMAF0yLgAApBACq1Fe70+HB+fwBMHEkmksjA4MhbDoJ20aBghWE8IwOAIhFR3hCdDJWKAA';
     const host = Cypress.env('MAP_TILE_COMPARE_HOST');
     if (typeof host !== 'string' || host === '') {
       throw new Error('cypress environment variable MAP_TILE_COMPARE_HOST is not set');
     }
-    cy.visit(`${host}#${hashData}`);
+    const configUrl = 'https://tiles.leifgehrmann.com/configs/edinburgh_2.json';
+    cy.visit(`${host}#${configUrl}`);
   });
 
   it('compare slider should appear', () => {
