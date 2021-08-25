@@ -52,7 +52,7 @@
   <div
     v-if="!showMap"
     ref="splashScreenContainer"
-    class="absolute bottom-0 left-0 w-screen"
+    class="absolute bottom-0 left-0 w-screen transition-all duration-300"
   >
     <div class="p-4 h-full">
       <div class="h-full flex justify-center items-center">
