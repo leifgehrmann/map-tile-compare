@@ -14,6 +14,8 @@
       items-center
       pointer-events-auto
       "
+      :aria-label="mountedExpanded ? 'Close reference photo' : 'Expand reference photo'"
+      :title="mountedExpanded ? 'Close reference photo' : 'Expand reference photo'"
     >
       <transition
         name="button-fade"
@@ -21,26 +23,19 @@
       >
         <div
           v-if="showResizeButton && mountedExpanded"
+          aria-hidden="true"
           class="
             bg-gray-800 bg-opacity-70
             backdrop-filter backdrop-blur-xl
             rounded-lg
-            absolute
-            top-1
-            right-1
-            p-1
+            absolute top-2 right-2
+            p-2
           "
-          :class="{
-            'top-2': mountedExpanded,
-            'right-2': mountedExpanded,
-            'p-2': mountedExpanded
-          }"
         >
           <img
             v-if="mountedExpanded"
             src="../assets/close.svg"
-            alt="Close image"
-            title="Close image"
+            alt="Close reference photo"
             class="w-5"
           >
         </div>
@@ -55,22 +50,15 @@
             bg-gray-800 bg-opacity-70
             backdrop-filter backdrop-blur-xl
             rounded-lg
-            absolute
-            top-1
-            right-1
+            absolute top-1 right-1
             p-1
           "
-          :class="{
-            'top-2': mountedExpanded,
-            'right-2': mountedExpanded,
-            'p-2': mountedExpanded
-          }"
+          aria-hidden="true"
         >
           <img
             v-if="!mountedExpanded"
             src="../assets/expand.svg"
-            alt="Expand image"
-            title="Expand image"
+            alt="Expand reference photo"
             class="w-3"
           >
         </div>

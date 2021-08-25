@@ -59,7 +59,7 @@
         <img
           v-if="mountedShowCompare"
           src="../assets/show-compare-active.svg"
-          alt="Compare mode is disabled"
+          alt="Compare mode is enabled"
           aria-hidden="true"
         >
         <img
