@@ -64,16 +64,14 @@ The table below explains the meaning of each property:
 
 After creating the JSON, you have two options:
 
-* Store the JSON to an external host.
+* Store the JSON on an external host.
 * Store the JSON file in the `public/` directory and run `npm run build`. The file can then be accessed via `http://localhost:5000/yourConfig.json`.
 
-Grab the URL to the JSON and append it to the app's host URL:
+Grab the URL to the JSON and append it to the app's host URL.
 
 ```
 http://locahost:5000/#http://localhost/5000/config.json
 ```
-
-Your config will now load in the browser!
 
 ## Development
 
