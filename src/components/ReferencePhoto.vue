@@ -4,6 +4,7 @@
     @click="mountedExpanded = !mountedExpanded"
   >
     <button
+      tabindex="1"
       class="
       rounded-xl
       flex
