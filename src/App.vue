@@ -124,7 +124,7 @@ export default defineComponent({
     referencePhotoImageUrl: '',
     referencePhotoExpanded: true,
     referencePhotoTouchStartWidth: 0,
-    referencePhotoTouchStartIdentifier: '',
+    referencePhotoTouchStartIdentifier: 0,
     referencePhotoTouchStartX: 0,
     referencePhotoTouchEndX: 0,
     windowHeight: window.innerHeight,
