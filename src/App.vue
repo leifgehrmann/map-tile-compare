@@ -30,7 +30,12 @@
   <div
     v-if="referencePhotoImageUrl !== ''"
     ref="referencePhotoContainer"
-    class="absolute top-0 left-0 w-28 md:w-40 transition-all duration-300 pointer-events-none"
+    class="
+      absolute top-0 left-0
+      w-28 md:w-40
+      transition-all ease-out duration-300
+      pointer-events-none
+    "
     :class="{
       'w-screen': referencePhotoExpanded,
       'md:w-screen': referencePhotoExpanded
@@ -118,6 +123,10 @@ export default defineComponent({
     sourceBounds: [-180, -90, 180, 90],
     referencePhotoImageUrl: '',
     referencePhotoExpanded: true,
+    referencePhotoTouchStartWidth: 0,
+    referencePhotoTouchStartIdentifier: '',
+    referencePhotoTouchStartX: 0,
+    referencePhotoTouchEndX: 0,
     windowHeight: window.innerHeight,
     // Use a non-zero value to avoid some obvious jitter
     splashScreenButtonHeight: 48,
@@ -156,6 +165,7 @@ export default defineComponent({
         this.resizeSplashScreen();
       }, 300);
     });
+    this.addReferencePhotoTouchEventListeners();
   },
   methods: {
     async loadConfig(): Promise<void> {
@@ -213,6 +223,79 @@ export default defineComponent({
         top: pixelsPerRem,
         bottom: mapAttributionHeight,
       };
+    },
+    addReferencePhotoTouchEventListeners(): void {
+      const pixelsPerRem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const photoContainer = this.$refs.referencePhotoContainer as HTMLDivElement;
+
+      // Start recording the user's current touch position and current container width
+      photoContainer.addEventListener('touchstart', (event) => {
+        const firstTouch = event.touches[0];
+        this.referencePhotoTouchStartIdentifier = firstTouch.identifier;
+        this.referencePhotoTouchStartX = firstTouch.clientX;
+        this.referencePhotoTouchEndX = firstTouch.clientX;
+        this.referencePhotoTouchStartWidth = photoContainer.clientWidth;
+        photoContainer.style.maxWidth = `${window.innerWidth + 30}px`;
+        photoContainer.style.minWidth = `${pixelsPerRem * 7 - 30}px`;
+      });
+
+      // Calculate difference from and adjust the width of the
+      // referencePhotoContainer to be offset by the x-distance, with some bounciness
+      photoContainer.addEventListener('touchmove', (event) => {
+        const firstTouch = this.findTouchByIdentifier(
+          event.touches,
+          this.referencePhotoTouchStartIdentifier,
+        );
+        if (firstTouch === null) {
+          return;
+        }
+        this.referencePhotoTouchEndX = firstTouch.clientX;
+        const offset = this.referencePhotoTouchEndX - this.referencePhotoTouchStartX;
+        let newWidth = this.referencePhotoTouchStartWidth + offset;
+        newWidth = Math.min(newWidth, window.innerWidth + 30);
+        newWidth = Math.max(newWidth, pixelsPerRem * 7 - 30);
+        photoContainer.style.width = `${newWidth}px`;
+
+        // Special-case: if we're on the splash screen and we've moved the image more
+        // than 30 pixels, just load the map. There's no point waiting for the user
+        // to swipe all the way.
+        if (!this.showMap && offset < -30) {
+          this.showMap = !this.showMap;
+        }
+      });
+
+      // If the touch is cancelled, reset everything back to normal.
+      photoContainer.addEventListener('touchcancel', () => {
+        this.referencePhotoTouchEndX = 0;
+        this.referencePhotoTouchStartX = 0;
+        photoContainer.style.width = '';
+        photoContainer.style.maxWidth = '';
+        photoContainer.style.minWidth = '';
+      });
+
+      // If the touch has ended, check if the user has dragged more than 30 pixels
+      // which will toggle the size of the reference photo.
+      photoContainer.addEventListener('touchend', () => {
+        const offset = this.referencePhotoTouchEndX - this.referencePhotoTouchStartX;
+        if (
+          (this.referencePhotoExpanded && offset < -30)
+          || (!this.referencePhotoExpanded && offset > 30)
+        ) {
+          this.referencePhotoExpanded = !this.referencePhotoExpanded;
+        }
+        photoContainer.style.width = '';
+        photoContainer.style.maxWidth = '';
+        photoContainer.style.minWidth = '';
+      });
+    },
+    findTouchByIdentifier(touches: TouchList, identifier: number): Touch|null {
+      for (let i = 0; i < touches.length; i += 1) {
+        const id = touches[i].identifier;
+        if (id === identifier) {
+          return touches[i];
+        }
+      }
+      return null;
     },
   },
 });
