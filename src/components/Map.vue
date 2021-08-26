@@ -19,7 +19,7 @@ import maplibregl, { PaddingOptions } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import MaplibreCompare from '@maplibre/maplibre-gl-compare';
 import '@maplibre/maplibre-gl-compare/dist/maplibre-gl-compare.css';
-import { ref, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
 type LayerBackup = {
   layer: maplibregl.AnyLayer;
