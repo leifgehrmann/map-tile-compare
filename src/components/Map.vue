@@ -1,7 +1,7 @@
 <template>
   <div
     id="comparison-container"
-    :class="showCompare ? 'showCompare' : 'hideCompare'"
+    :class="{showCompare}"
   >
     <div
       id="before"
@@ -49,17 +49,19 @@ export default defineComponent({
     showCompare: { type: Boolean, required: true },
     uiPadding: { type: Object as () => PaddingOptions, required: true },
   },
-  setup: () => {
-    const count = ref(0);
-    return { count };
-  },
   data: () => ({
     beforeMap: null as maplibregl.Map|null,
     beforeMapLabelBackups: [] as LayerBackup[],
     afterMap: null as maplibregl.Map|null,
     afterMapLabelBackups: [] as LayerBackup[],
     compareMap: null as MaplibreCompareInstance|null,
-    compareMapCurrentPosition: 0,
+    // Will be set automatically by `MapLibreCompare` to be half the width of
+    // the window when mounted
+    compareMapLastPosition: 0,
+    // `compareMapMinimumPosition` is deliberately a non-zero value because
+    // `MapLibreCompare` breaks if you set the value to 0. Thankfully it is
+    // low enough for the #before element to not appear on the page.
+    compareMapMinimumPosition: 0.1,
   }),
   watch: {
     showLabels(): void {
@@ -144,7 +146,6 @@ export default defineComponent({
       }
     });
 
-    // eslint-disable-next-line no-new
     this.compareMap = new MaplibreCompare(beforeMap, afterMap, '#comparison-container');
     if (this.compareMap !== null) {
       if (this.showCompare) {
@@ -182,16 +183,17 @@ export default defineComponent({
       return layerBackups;
     },
     addCompare(compareMap: MaplibreCompareInstance): void {
-      if (this.compareMapCurrentPosition >= window.innerWidth) {
-        this.compareMapCurrentPosition = window.innerWidth / 2;
+      // If the user has reduced the size of their window we need to make sure
+      // the slider is in a position that the user can still see.
+      if (this.compareMapLastPosition >= window.innerWidth) {
+        this.compareMapLastPosition = window.innerWidth / 2;
       }
-      if (compareMap.currentPosition <= 0 || compareMap.currentPosition >= window.innerWidth) {
-        compareMap.setSlider(this.compareMapCurrentPosition);
-      }
+      compareMap.setSlider(this.compareMapLastPosition);
     },
     removeCompare(compareMap: MaplibreCompareInstance): void {
-      this.compareMapCurrentPosition = compareMap.currentPosition;
-      compareMap.setSlider(0);
+      this.compareMapLastPosition = compareMap.currentPosition;
+      // Move the slider to the very edge of the map to simulate "hiding" the slider.
+      compareMap.setSlider(this.compareMapMinimumPosition);
     },
   },
 });
@@ -204,11 +206,15 @@ export default defineComponent({
 
 .maplibregl-compare .compare-swiper-vertical {
   backdrop-filter: blur(24px);
-  background-color: rgba(117, 117, 117, 0.5);
+  background-color: rgba(66, 66, 66, 0.5);
 }
 
-.hideCompare .maplibregl-compare {
-  display: none;
+#comparison-container:not(.showCompare) .maplibregl-compare {
+  visibility: hidden;
+}
+
+#comparison-container:not(.showCompare) #before {
+  visibility: hidden;
 }
 
 .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl, .maplibregl-ctrl-bottom-left .maplibregl-ctrl {
