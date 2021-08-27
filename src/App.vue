@@ -57,16 +57,20 @@
   <div
     v-if="!showMap"
     ref="splashScreenContainer"
-    class="absolute bottom-0 left-0 w-screen transition-all duration-300"
+    class="
+      absolute bottom-0 left-0
+      w-screen
+      transition-all east-out duration-300
+    "
   >
     <div class="p-4 h-full">
       <div class="h-full flex justify-center items-center">
         <button
           ref="splashScreenButton"
           class="
-            bg-black dark:bg-gray-600 bg-opacity-70
+            bg-gray-300 dark:bg-gray-600 bg-opacity-70
             backdrop-filter backdrop-blur-xl
-            text-white dark:text-gray-200
+            text-black dark:text-gray-200
             rounded-xl px-4 py-3
           "
           @click="showMap = true; referencePhotoExpanded = false;"
