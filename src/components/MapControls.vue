@@ -17,7 +17,7 @@
       "
     >
       <button
-        tabindex="2"
+        tabindex="4"
         class="
         px-3 py-3
         w-12 h-12
@@ -49,7 +49,7 @@
         "
       />
       <button
-        tabindex="3"
+        tabindex="5"
         class="
         px-3 py-3
         w-12 h-12

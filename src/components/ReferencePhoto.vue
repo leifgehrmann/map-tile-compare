@@ -1,10 +1,8 @@
 <template>
   <div
     class="flex justify-center pointer-events-none"
-    @click="mountedExpanded = !mountedExpanded"
   >
-    <button
-      tabindex="1"
+    <div
       class="
       rounded-xl
       flex
@@ -15,38 +13,67 @@
       items-center
       pointer-events-auto
       "
-      :aria-label="mountedExpanded ? 'Close reference photo' : 'Expand reference photo'"
-      :title="mountedExpanded ? 'Close reference photo' : 'Expand reference photo'"
     >
       <transition
         name="button-fade"
         mode="out-in"
       >
         <div
-          v-if="showResizeButton && mountedExpanded"
-          aria-hidden="true"
-          class="
-            bg-gray-800 bg-opacity-70
-            backdrop-filter backdrop-blur-xl
-            rounded-lg
-            absolute top-2 right-2
-            p-2
-          "
+          class="absolute top-2 right-2"
         >
-          <img
-            v-if="mountedExpanded"
-            src="../assets/close.svg"
-            alt="Close reference photo"
-            class="w-5"
+          <button
+            v-if="showResizeButton && mountedExpanded"
+            tabindex="2"
+            class="
+              bg-gray-800 bg-opacity-70
+              backdrop-filter backdrop-blur-xl
+              rounded-lg
+              p-2
+            "
+            aria-label="Close reference photo"
+            title="Close reference photo"
+            @click="mountedExpanded = !mountedExpanded"
           >
+            <img
+              v-if="mountedExpanded"
+              aria-hidden="true"
+              src="../assets/close.svg"
+              alt="Close reference photo"
+              class="w-5"
+            >
+          </button>
+          <div class="h-2">
+          </div>
+          <button
+            v-if="showResizeButton && mountedExpanded"
+            tabindex="3"
+            aria-label="View image in new window"
+            title="View image in new window"
+            class="
+              bg-gray-800 bg-opacity-70
+              backdrop-filter backdrop-blur-xl
+              rounded-lg
+              p-2
+            "
+            @click="openImageExternally"
+          >
+            <img
+              v-if="mountedExpanded"
+              aria-hidden="true"
+              src="../assets/open-external.svg"
+              alt="View image in new window"
+              class="w-5"
+            >
+          </button>
         </div>
       </transition>
       <transition
         name="button-fade"
         mode="out-in"
       >
-        <div
+        <button
           v-if="showResizeButton && !mountedExpanded"
+          tabindex="1"
           class="
             bg-gray-800 bg-opacity-70
             backdrop-filter backdrop-blur-xl
@@ -54,24 +81,30 @@
             absolute top-1 right-1
             p-1
           "
-          aria-hidden="true"
+          @click="mountedExpanded = !mountedExpanded"
         >
           <img
             v-if="!mountedExpanded"
+            aria-hidden="true"
             src="../assets/expand.svg"
             alt="Expand reference photo"
             class="w-3"
           >
-        </div>
+        </button>
       </transition>
       <img
         ref="image"
-        class="rounded-xl shadow-md bg-gray-300 dark:bg-gray-800 color-black bg-opacity-50"
+        class="
+          rounded-xl shadow-md
+          bg-gray-300 dark:bg-gray-800 bg-opacity-50
+          cursor-pointer
+        "
         alt="Reference photo associated with the map"
         :src="imageUrl"
         @load="$emit('update:imageLoaded')"
+        @click="mountedExpanded = !mountedExpanded"
       >
-    </button>
+    </div>
   </div>
 </template>
 
@@ -126,6 +159,9 @@ export default defineComponent({
     resizeImage(): void {
       const image = this.$refs.image as HTMLImageElement;
       image.style.maxHeight = this.maxHeight;
+    },
+    openImageExternally(): void {
+      window.open(this.imageUrl, '_blank');
     },
   },
 });
