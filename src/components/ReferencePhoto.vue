@@ -47,8 +47,8 @@
           <button
             v-if="showResizeButton && mountedExpanded"
             tabindex="3"
-            aria-label="View image in new window"
-            title="View image in new window"
+            aria-label="Open reference photo in new window"
+            title="Open reference photo in new window"
             class="
               bg-gray-800 bg-opacity-70
               backdrop-filter backdrop-blur-xl
@@ -61,7 +61,7 @@
               v-if="mountedExpanded"
               aria-hidden="true"
               src="../assets/open-external.svg"
-              alt="View image in new window"
+              alt="Open reference photo in new window"
               class="w-5"
             >
           </button>
@@ -81,6 +81,8 @@
             absolute top-1 right-1
             p-1
           "
+          aria-label="Expand reference photo"
+          title="Expand reference photo"
           @click="mountedExpanded = !mountedExpanded"
         >
           <img
