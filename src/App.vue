@@ -76,7 +76,8 @@
           @click="showMap = true; referencePhotoExpanded = false;"
         >
           <span v-if="name !== ''">
-            <span class="font-bold">{{ name }}</span> – Click to Load Map
+            <span class="font-bold">{{ name }}</span> -
+            <span class="whitespace-nowrap">Click to Load Map</span>
           </span>
           <span v-else>
             Click to Load Map

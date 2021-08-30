@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
-    <title>close</title>
+    <title>open-external</title>
     <desc>Created with Sketch.</desc>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M7,25 L25,7" stroke="#FFFFFF" stroke-width="4"></path>
-        <path d="M25,25 L7,7" stroke="#FFFFFF" stroke-width="4"></path>
+        <polyline stroke="#FFFFFF" stroke-width="4" points="10 8 5 8 5 27 24 27 24 22"></polyline>
+        <path d="M16,16 L27,5" stroke="#FFFFFF" stroke-width="4"></path>
+        <polyline stroke="#FFFFFF" stroke-width="4" points="28 14 28 4 18 4"></polyline>
     </g>
 </svg>
