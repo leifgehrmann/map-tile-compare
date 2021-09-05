@@ -1,9 +1,19 @@
 # map-tile-compare
 A single-page web application for comparing a tile layer with a background satellite layer.
 
-## Demos
+## Demo
 
-* [Edinburgh](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/edinburgh_2.json)
+![Demonstration of map-tile-compare](https://user-images.githubusercontent.com/3501061/132141740-a1eec210-366c-48f2-8a36-665bce75ddc4.mp4)
+
+## Live examples
+
+* [Edinburgh, Scotland](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/edinburgh_2.json)
+* [Edinburgh, Scotland (At twilight)](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/edinburgh_1.json)
+* [Broxburn, Scotland](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/edinburgh_6.json)
+* [Ketelmeer, Netherlands](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/netherlands_1.json)
+* [Marker Wadden, Netherlands](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/netherlands_2.json)
+* [Koblenz, Germany](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/germany_1.json)
+* [Germany/Netherlands border](https://map-tile-compare.leifgehrmann.com/#https://tiles.leifgehrmann.com/configs/germany_2.json)
 
 ## Installing the app
 
