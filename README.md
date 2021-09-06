@@ -1,4 +1,8 @@
 # map-tile-compare
+
+[![Build Status](https://github.com/leifgehrmann/map-tile-compare/workflows/Tests/badge.svg?branch=main)](https://github.com/leifgehrmann/map-tile-compare/actions)
+[![Code Coverage](https://codecov.io/gh/leifgehrmann/map-tile-compare/branch/main/graph/badge.svg)](https://codecov.io/gh/leifgehrmann/map-tile-compare)
+
 A single-page web application for comparing a tile layer with a background satellite layer.
 
 ## Demo

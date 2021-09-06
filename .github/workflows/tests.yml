@@ -30,8 +30,8 @@ jobs:
           build: npm run build
           start: npm run serve
           command: npm run test:e2e
-#      - name: Upload coverage to Codecov
-#        uses: codecov/codecov-action@v1
-#        with:
-#          env_vars: NODE
-#          fail_ci_if_error: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          env_vars: NODE
+          fail_ci_if_error: true
