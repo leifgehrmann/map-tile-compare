@@ -93,6 +93,8 @@ describe('map-tile-compare', () => {
 
   describe('before the map has been loaded', () => {
     it('will update the width and x-offset of the reference photo when the page is resized', () => {
+      cy.viewport(400, 700);
+      cy.wait(500);
       cy.get(referencePhotoSelector).then((elements) => {
         const element = resolveElement(elements);
         cy.wrap(element.getBoundingClientRect()).as('photoRectBefore');
