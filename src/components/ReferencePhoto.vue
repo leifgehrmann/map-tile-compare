@@ -159,8 +159,8 @@ export default defineComponent({
   },
   methods: {
     resizeImage(): void {
-      const image = this.$refs.image as HTMLImageElement;
-      image.style.maxHeight = this.maxHeight;
+      const image = this.$refs.image as HTMLImageElement|null;
+      image?.style.maxHeight = this.maxHeight;
     },
     openImageExternally(): void {
       window.open(this.imageUrl, '_blank');
