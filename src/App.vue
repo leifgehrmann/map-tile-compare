@@ -201,8 +201,10 @@ export default defineComponent({
           const photoContainer = this.$refs.referencePhotoContainer as HTMLDivElement;
           const photoContainerHeight = photoContainer.clientHeight;
           const leftoverHeight = window.innerHeight - photoContainerHeight;
-          const splashScreenContainer = this.$refs.splashScreenContainer as HTMLDivElement;
-          splashScreenContainer.style.height = `calc(${leftoverHeight}px + 1rem)`;
+          const splashScreenContainer = this.$refs.splashScreenContainer as HTMLDivElement|null;
+          if (splashScreenContainer !== null) {
+            splashScreenContainer.style.height = `calc(${leftoverHeight}px + 1rem)`;
+          }
         });
       }
     },

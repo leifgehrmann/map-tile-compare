@@ -115,3 +115,9 @@ $ npm run test:e2e
 ```
 
 This should also generate code coverage automatically, which can be viewed in `coverage/`.
+
+To see the cypress tests actually running, run:
+
+``` console
+$ npx cypress open
+```
