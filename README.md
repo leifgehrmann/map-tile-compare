@@ -104,8 +104,11 @@ $ npm run lint
 To run end to end tests, in one console run:
 
 ```console
+$ npm run build:test
 $ npm run serve
 ```
+
+`build:test` will build the app with sourcemaps, which will allow for code coverage later. 
 
 Then in a different console, run:
 
@@ -114,9 +117,9 @@ $ export CYPRESS_MAP_TILE_COMPARE_HOST='http://localhost:5000/'
 $ npm run test:e2e
 ```
 
-This should also generate code coverage automatically, which can be viewed in `coverage/`.
+Code coverage will be generated automatically, and can be viewed in `coverage/`.
 
-To see the cypress tests actually running, run:
+To see the cypress tests actually running in a browser, run:
 
 ``` console
 $ npx cypress open

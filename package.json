@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "build:test": "vue-tsc --noEmit && vite build --mode=testing",
     "serve": "vite preview",
     "lint": "eslint . --ext .js,.vue,.ts",
     "test:e2e": "npx cypress run"
@@ -20,7 +21,7 @@
     "@types/geojson": "^7946.0.8",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
-    "@vitejs/plugin-vue": "^1.6.0",
+    "@vitejs/plugin-vue": "^1.8.0",
     "@vue/compiler-sfc": "^3.2.12",
     "@vue/eslint-config-airbnb": "^5.3.0",
     "@vue/eslint-config-typescript": "^7.0.0",
