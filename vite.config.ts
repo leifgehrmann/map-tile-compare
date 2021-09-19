@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import istanbul from 'vite-plugin-istanbul';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     vue(),
     istanbul({
@@ -14,4 +14,7 @@ export default defineConfig({
       cypress: true,
     }),
   ],
-});
+  build: {
+    sourcemap: mode === 'testing',
+  },
+}));
