@@ -15,7 +15,7 @@
     "vue": "^3.2.12"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.9.10",
+    "@cypress/code-coverage": "^3.9.11",
     "@cypress/webpack-preprocessor": "^5.9.1",
     "@types/geojson": "^7946.0.8",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
@@ -25,7 +25,7 @@
     "@vue/eslint-config-airbnb": "^5.3.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-plugin-istanbul": "^6.0.0",
-    "cypress": "^8.3.1",
+    "cypress": "^8.4.1",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.18.0",
     "postcss": "^8.3.6",
