@@ -94,13 +94,13 @@ describe('map-tile-compare', () => {
   describe('before the map has been loaded', () => {
     it('will update the width and x-offset of the reference photo when the page is resized', () => {
       cy.viewport(400, 700);
-      cy.wait(500);
+      cy.wait(1000);
       cy.get(referencePhotoSelector).then((elements) => {
         const element = resolveElement(elements);
         cy.wrap(element.getBoundingClientRect()).as('photoRectBefore');
       });
       cy.viewport(500, 500);
-      cy.wait(500); // Wait for JS/CSS to take effect.
+      cy.wait(1000); // Wait for JS/CSS to take effect.
       cy.get(referencePhotoSelector).then((elements) => {
         const element = resolveElement(elements);
         cy.wrap(element.getBoundingClientRect()).as('photoRectAfter');
