@@ -13,7 +13,7 @@
     "@maplibre/maplibre-gl-compare": "^0.5.0",
     "events": "^3.3.0",
     "maplibre-gl": "^1.15.2",
-    "vue": "^3.2.12"
+    "vue": "^3.2.20"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.11",
@@ -22,7 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "@vitejs/plugin-vue": "^1.9.3",
-    "@vue/compiler-sfc": "^3.2.12",
+    "@vue/compiler-sfc": "^3.2.20",
     "@vue/eslint-config-airbnb": "^5.3.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-plugin-istanbul": "^6.0.0",
