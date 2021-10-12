@@ -42,8 +42,7 @@
               class="w-5"
             >
           </button>
-          <div class="h-2">
-          </div>
+          <div class="h-2" />
           <button
             v-if="showResizeButton && mountedExpanded"
             tabindex="3"

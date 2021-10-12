@@ -2,16 +2,18 @@
 declare namespace Cypress {
   interface cy {
     all(...commands: Cypress.Chainable[]): Cypress.Chainable
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     queue: any
   }
   interface Chainable {
     chainerId: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ___CY_ALL_CHAIN_START___: any
   }
 }
 
 const chainStart = '___CY_ALL_CHAIN_START___';
-cy.all = function (...commands) {
+cy.all = (...commands) => {
   const { _ } = Cypress;
   // eslint-disable-next-line
   const chain = cy.wrap(null, { log: false })
