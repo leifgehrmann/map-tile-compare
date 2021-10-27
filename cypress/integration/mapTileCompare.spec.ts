@@ -140,7 +140,9 @@ describe('map-tile-compare', () => {
     it('will toggle the visibility of labels', () => {
       // Confirm 'Toggle label' button is visible and clickable.
       cy.get(toggleLabelsSelector).click();
-      cy.wait(500);
+      cy.wait(3000); // Wait for labels to load.
+      cy.get(toggleLabelsSelector).click();
+      cy.wait(500); // Re-display the labels.
       cy.get(toggleLabelsSelector).click();
     });
 

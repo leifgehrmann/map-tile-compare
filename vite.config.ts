@@ -10,11 +10,10 @@ export default defineConfig(({ mode }) => ({
       include: 'src/*',
       exclude: ['node_modules', 'test/', 'cypress/'],
       extension: ['.js', '.ts', '.vue'],
-      requireEnv: true,
-      cypress: true,
+      checkProd: mode === 'production',
     }),
   ],
   build: {
-    sourcemap: mode === 'testing',
+    sourcemap: mode !== 'production',
   },
 }));
