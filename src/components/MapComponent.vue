@@ -34,7 +34,7 @@ interface MaplibreCompareInstance {
 }
 
 export default defineComponent({
-  name: 'Map',
+  name: 'MapComponent',
   props: {
     beforeStyle: { type: String, required: true },
     beforeStyleAccessToken: { type: String, required: true },

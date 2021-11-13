@@ -1,5 +1,5 @@
 <template>
-  <Map
+  <MapComponent
     v-if="showMap"
     :before-style="beforeStyle"
     :before-style-access-token="beforeStyleAccessToken"
@@ -50,7 +50,7 @@
         :max-height="referencePhotoMaxHeight"
         :show-resize-button="referencePhotoShowResizeButton"
         @update:expanded="referencePhotoExpanded = $event;showMap = true;"
-        @update:imageLoaded="resizeSplashScreen()"
+        @update:image-loaded="resizeSplashScreen()"
       />
     </div>
   </div>
@@ -91,7 +91,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { PaddingOptions } from 'maplibre-gl';
-import Map from './components/Map.vue';
+import MapComponent from './components/MapComponent.vue';
 import MapControls from './components/MapControls.vue';
 import ReferencePhoto from './components/ReferencePhoto.vue';
 
@@ -111,7 +111,7 @@ document.addEventListener('gestureend', (e) => {
 export default defineComponent({
   name: 'App',
   components: {
-    Map,
+    MapComponent,
     MapControls,
     ReferencePhoto,
   },
