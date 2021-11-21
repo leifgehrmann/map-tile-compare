@@ -104,6 +104,7 @@
         :src="imageUrl"
         @load="$emit('update:imageLoaded')"
         @click="mountedExpanded = !mountedExpanded"
+        @keyup.space="mountedExpanded = !mountedExpanded"
       >
     </div>
   </div>
