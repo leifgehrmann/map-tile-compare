@@ -17,4 +17,9 @@ module.exports = {
     '@vue/airbnb',
     '@vue/typescript',
   ],
+  rules: {
+    // While positive tab indexes are not recommended, I've been careful to properly index
+    // all the inputs.
+    'vuejs-accessibility/tabindex-no-positive': 'off',
+  },
 };
