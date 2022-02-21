@@ -7,7 +7,7 @@ A single-page web application for comparing a tile layer with a background satel
 
 ## Demo
 
-![Demonstration of map-tile-compare](https://user-images.githubusercontent.com/3501061/132141740-a1eec210-366c-48f2-8a36-665bce75ddc4.mp4)
+https://user-images.githubusercontent.com/3501061/154965180-cb60366e-5ff7-4040-b9f3-1d341bbabafb.mp4
 
 ## Live examples
 
