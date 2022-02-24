@@ -16,4 +16,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     sourcemap: mode !== 'production',
   },
+  preview: {
+    port: 5000,
+  },
 }));
