@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => ({
       exclude: ['node_modules', 'test/', 'cypress/'],
       extension: ['.js', '.ts', '.vue'],
       checkProd: mode === 'production',
+      forceBuildInstrument: mode !== 'production',
     }),
   ],
   build: {
