@@ -15,8 +15,6 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "node_modules/cypress",
-    "cypress/**/*.ts"
+    "src/**/*.vue"
   ]
 }
