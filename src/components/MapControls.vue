@@ -17,6 +17,7 @@
       "
     >
       <button
+        type="button"
         tabindex="4"
         class="
         px-3 py-3
@@ -49,6 +50,7 @@
         "
       />
       <button
+        type="button"
         tabindex="5"
         class="
         px-3 py-3

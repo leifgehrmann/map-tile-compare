@@ -23,6 +23,7 @@
         >
           <button
             v-if="showResizeButton && mountedExpanded"
+            type="button"
             tabindex="2"
             class="
               bg-gray-800 bg-opacity-70
@@ -45,6 +46,7 @@
           <div class="h-2" />
           <button
             v-if="showResizeButton && mountedExpanded"
+            type="button"
             tabindex="3"
             aria-label="Open reference photo in new window"
             title="Open reference photo in new window"
@@ -72,6 +74,7 @@
       >
         <button
           v-if="showResizeButton && !mountedExpanded"
+          type="button"
           tabindex="1"
           class="
             bg-gray-800 bg-opacity-70

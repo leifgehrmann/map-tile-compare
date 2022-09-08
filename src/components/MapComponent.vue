@@ -1,7 +1,7 @@
 <template>
   <div
     id="comparison-container"
-    :class="{showCompare}"
+    :class="{ showCompare }"
   >
     <div
       id="before"

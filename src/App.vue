@@ -38,7 +38,7 @@
     "
     :class="{
       'w-screen': referencePhotoExpanded,
-      'md:w-screen': referencePhotoExpanded
+      'md:w-screen': referencePhotoExpanded,
     }"
   >
     <div
@@ -67,6 +67,7 @@
       <div class="h-full flex justify-center items-center">
         <button
           ref="splashScreenButton"
+          type="button"
           class="
             bg-gray-300 dark:bg-gray-600 bg-opacity-70
             backdrop-filter backdrop-blur-xl
