@@ -15,9 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
           registry-url: 'https://registry.npmjs.org'
       - name: Run audit
         run: |
