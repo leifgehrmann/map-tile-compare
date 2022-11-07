@@ -13,13 +13,13 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
     env:
       NODE: ${{ matrix.node-version }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: Run tests with cypress (which includes install, build, serve, test, and coverage)
@@ -31,7 +31,7 @@ jobs:
           start: npm run serve
           command: npm run test:e2e
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           env_vars: NODE
           fail_ci_if_error: true
