@@ -16,8 +16,8 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.11.0",
-    "@cypress/webpack-preprocessor": "^5.17.1",
+    "@cypress/code-coverage": "^3.12.1",
+    "@cypress/webpack-preprocessor": "^6.0.0",
     "@types/geojson": "^7946.0.10",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
@@ -35,7 +35,7 @@
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vite-plugin-istanbul": "^4.1.0",
+    "vite-plugin-istanbul": "^5.0.0",
     "vue-eslint-parser": "^9.3.1",
     "vue-tsc": "^1.8.11"
   }
