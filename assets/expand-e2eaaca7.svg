@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>expand</title>
+    <desc>Created with Sketch.</desc>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M12,25 L12,18.5 C12,17.6715729 12.6715729,17 13.5,17 C14.3284271,17 15,17.6715729 15,18.5 L15,26.5 C15,27.3284271 14.3284271,28 13.5,28 L5.5,28 C4.67157288,28 4,27.3284271 4,26.5 C4,25.6715729 4.67157288,25 5.5,25 L12,25 Z" fill="#FFFFFF" transform="translate(9.500000, 22.500000) rotate(-270.000000) translate(-9.500000, -22.500000) "></path>
+        <path d="M25,12 L25,5.5 C25,4.67157288 25.6715729,4 26.5,4 C27.3284271,4 28,4.67157288 28,5.5 L28,13.5 C28,14.3284271 27.3284271,15 26.5,15 L18.5,15 C17.6715729,15 17,14.3284271 17,13.5 C17,12.6715729 17.6715729,12 18.5,12 L25,12 Z" fill="#FFFFFF" transform="translate(22.500000, 9.500000) rotate(-450.000000) translate(-22.500000, -9.500000) "></path>
+        <rect fill="#FFFFFF" transform="translate(10.288673, 21.711327) rotate(-585.000000) translate(-10.288673, -21.711327) " x="3.67332107" y="20.2113273" width="13.2307033" height="3" rx="1"></rect>
+        <rect fill="#FFFFFF" transform="translate(21.288673, 10.711327) rotate(-585.000000) translate(-21.288673, -10.711327) " x="14.6733211" y="9.21132729" width="13.2307033" height="3" rx="1"></rect>
+    </g>
+</svg>
