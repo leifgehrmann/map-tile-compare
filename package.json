@@ -26,7 +26,7 @@
     "@vue/eslint-config-airbnb": "^7.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",
     "autoprefixer": "^10.4.20",
-    "babel-plugin-istanbul": "^6.1.1",
+    "babel-plugin-istanbul": "^7.0.0",
     "cypress": "^13.13.2",
     "eslint": "^8.52.0",
     "eslint-plugin-vue": "^9.27.0",
