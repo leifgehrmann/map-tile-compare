@@ -19,10 +19,10 @@
         mode="out-in"
       >
         <div
+          v-if="showResizeButton && mountedExpanded"
           class="absolute top-2 right-2"
         >
           <button
-            v-if="showResizeButton && mountedExpanded"
             type="button"
             tabindex="2"
             class="
@@ -45,7 +45,6 @@
           </button>
           <div class="h-2" />
           <button
-            v-if="showResizeButton && mountedExpanded"
             type="button"
             tabindex="3"
             aria-label="Open reference photo in new window"
