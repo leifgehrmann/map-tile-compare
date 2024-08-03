@@ -13,17 +13,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
     env:
       NODE: ${{ matrix.node-version }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Run tests with cypress (which includes install, build, serve, test, and coverage)
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_MAP_TILE_COMPARE_HOST: http://localhost:5000/
         with:
@@ -31,7 +31,7 @@ jobs:
           start: npm run serve
           command: npm run test:e2e
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
-          env_vars: NODE
           fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
